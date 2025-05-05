@@ -66,18 +66,18 @@ export function FileUploader({ onUploadComplete }: FileUploaderProps) {
 									<Upload className="h-6 w-6 text-primary" />
 								</div>
 								<div>
-									<p className="text-base font-medium">Drag & drop an image or click to browse</p>
-									<p className="text-sm text-muted-foreground mt-1">Supports PNG, JPG or GIF up to 10MB</p>
+									<p className="text-base font-medium">1️⃣ 拖拽题目截图 2️⃣ 系统自动识别 3️⃣ 查看解题过程</p>
+									<p className="text-sm text-muted-foreground mt-1">支持10MB内PNG/JPG</p>
 								</div>
 								<div className="flex space-x-3">
 									<Button type="button" size="sm" variant="outline">
 										<Image className="mr-2 h-4 w-4" />
-										Upload Image
+										拍照上传题目
 									</Button>
-									<Button type="button" size="sm" variant="outline">
+									{/* <Button type="button" size="sm" variant="outline">
 										<FileText className="mr-2 h-4 w-4" />
 										Text Input
-									</Button>
+									</Button> */}
 								</div>
 							</div>
 						</div>
@@ -109,7 +109,7 @@ export function FileUploader({ onUploadComplete }: FileUploaderProps) {
 						</div>
 
 						<Button onClick={handleUpload} className="w-full">
-							Analyze Mathematics
+							获取分步解析
 						</Button>
 					</motion.div>
 				)}

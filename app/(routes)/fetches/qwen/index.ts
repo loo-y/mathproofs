@@ -10,27 +10,27 @@ const recognizePrompt = `作为一个专业的图像识别与文字转换专家�
 确保最终输出的文字版本忠实地反映了图片中的所有数学题信息。如果可能的话，尽量保留图片中的数学公式、符号和排版格式，可以使用 lean 4 格式。\
 请注意，你的目标是将图片中的内容转换为文字，而不是对其进行任何形式的分析或解答。`;
 
-let openaiInstance: OpenAI | null = null;
+let qwenInstance: OpenAI | null = null;
 
-const getOpenaiInstance = () => {
+const getqwenInstance = () => {
 	console.log(`DASHSCOPE_API_KEY`, process.env.DASHSCOPE_API_KEY);
 	if (!process?.env?.DASHSCOPE_API_KEY) return null;
 	// 需要返回一个 OpenAI 实例，如果已经创建过实例，可以直接返回
-	if (!openaiInstance) {
-		openaiInstance = new OpenAI({
+	if (!qwenInstance) {
+		qwenInstance = new OpenAI({
 			// 若没有配置环境变量，请用阿里云百炼API Key将下行替换为：apiKey: "sk-xxx",
 			apiKey: process.env.DASHSCOPE_API_KEY,
 			baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
 		});
 	}
 
-	return openaiInstance;
+	return qwenInstance;
 };
 
 // 识别图片 by qwen-omni-turbo
 export const recognizeImage = async (base64ImageWithFileType: string) => {
-	const openaiInstance = getOpenaiInstance() as OpenAI;
-	if (!openaiInstance) {
+	const qwenInstance = getqwenInstance() as OpenAI;
+	if (!qwenInstance) {
 		return {
 			status: false,
 			msg: `Please set API KEY for qwen omni.`, // please set API KEY
@@ -39,7 +39,7 @@ export const recognizeImage = async (base64ImageWithFileType: string) => {
 
 	let imageToText = ``;
 	try {
-		const completion = await openaiInstance.chat.completions.create({
+		const completion = await qwenInstance.chat.completions.create({
 			model: modelName,
 			messages: [
 				{

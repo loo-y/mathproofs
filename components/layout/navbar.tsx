@@ -11,9 +11,9 @@ import { cn } from '@/lib/utils';
 
 const navItems = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Solve', href: '/solve' },
-	{ label: 'How It Works', href: '#how-it-works' },
-	{ label: 'Examples', href: '#examples' },
+	// { label: 'Solve', href: '/solve' },
+	// { label: 'How It Works', href: '#how-it-works' },
+	// { label: 'Examples', href: '#examples' },
 ];
 
 export function Navbar() {
@@ -33,11 +33,11 @@ export function Navbar() {
 	return (
 		<header
 			className={cn(
-				'fixed top-0 w-full z-50 transition-all duration-300',
+				'fixed top-0 w-full z-50 transition-all duration-300 ',
 				isScrolled ? 'bg-background/80 backdrop-blur-md border-b shadow-sm' : 'bg-transparent',
 			)}
 		>
-			<div className="container flex items-center justify-between h-16 max-w-6xl">
+			<div className="container flex items-center justify-between h-16 max-w-6xl mx-auto">
 				<Link href="/" className="flex items-center space-x-2">
 					<BrainCircuit className="h-8 w-8 text-primary" />
 					<span className="font-bold text-xl">MathProofs AI</span>
@@ -86,7 +86,7 @@ export function Navbar() {
 						transition={{ duration: 0.2 }}
 						className="md:hidden border-t bg-background"
 					>
-						<div className="container py-4 space-y-3">
+						<div className="container py-4 space-y-3 px-4">
 							{navItems.map((item) => (
 								<Link
 									key={item.href}

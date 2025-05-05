@@ -15,23 +15,23 @@ interface StageInfo {
 const stages: Record<Exclude<ProcessingState, 'idle' | 'complete'>, StageInfo> = {
 	uploading: {
 		icon: FileImage,
-		label: 'Uploading',
-		description: 'Processing your image and extracting text...',
+		label: '图片上传中',
+		description: '正在提取文字与公式...',
 	},
 	analyzing: {
 		icon: BrainCircuit,
-		label: 'Analyzing',
-		description: 'Interpreting mathematical notation and structure...',
+		label: '数学解析中',
+		description: '正在识别符号与逻辑结构...',
 	},
 	converting: {
 		icon: FileCode,
-		label: 'Formalizing',
-		description: 'Converting to formal mathematical language...',
+		label: '标准化转换中',
+		description: '生成 LaTeX 兼容表达式...',
 	},
 	proving: {
 		icon: CheckCircle,
-		label: 'Verifying',
-		description: 'Generating proof and checking validity...',
+		label: '证明验证中',
+		description: '逻辑链校验 | 多步交叉核对...',
 	},
 };
 

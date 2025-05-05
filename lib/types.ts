@@ -22,7 +22,7 @@ export interface ProofTreeData {
 
 export interface SolutionData {
 	originalText: string;
-	formalizedText: string;
-	steps: SolutionStep[];
-	proofTree: ProofTreeData;
+	formalizedText?: string;
+	steps: SolutionStep[] | string;
+	proofTree?: ProofTreeData;
 }

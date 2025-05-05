@@ -9,6 +9,8 @@ import { SolutionData } from '@/lib/types';
 import { motion } from 'framer-motion';
 import { ProofTree } from '@/components/solve/proof-tree';
 import gsap from 'gsap';
+import MathContent from './mathContent';
+import MathMarkdown from './mathMarkdown';
 
 interface SolutionDisplayProps {
 	solution: SolutionData;
@@ -40,7 +42,7 @@ export function SolutionDisplay({ solution, onReset }: SolutionDisplayProps) {
 	}, [currentTab]);
 
 	const handleCopy = () => {
-		const textToCopy = solution.steps.map((step) => `${step.id}. ${step.content}`).join('\n');
+		const textToCopy = solution.steps as string;
 		navigator.clipboard.writeText(textToCopy);
 		setCopied(true);
 		setTimeout(() => setCopied(false), 2000);
@@ -50,64 +52,72 @@ export function SolutionDisplay({ solution, onReset }: SolutionDisplayProps) {
 		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className="space-y-6">
 			<div className="flex items-center justify-between">
 				<Button variant="ghost" size="sm" onClick={onReset}>
-					<ArrowLeft className="mr-2 h-4 w-4" /> Back
+					<ArrowLeft className="mr-2 h-4 w-4" /> 返回
 				</Button>
 
 				<div className="flex space-x-2">
 					<Button variant="outline" size="sm" onClick={handleCopy}>
 						{copied ? (
 							<>
-								<Check className="mr-2 h-4 w-4" /> Copied
+								<Check className="mr-2 h-4 w-4" /> 已复制
 							</>
 						) : (
 							<>
-								<Copy className="mr-2 h-4 w-4" /> Copy
+								<Copy className="mr-2 h-4 w-4" /> 复制
 							</>
 						)}
 					</Button>
-					<Button variant="outline" size="sm">
+					{/* <Button variant="outline" size="sm">
 						<DownloadCloud className="mr-2 h-4 w-4" /> PDF
-					</Button>
-					<Button variant="outline" size="sm">
+					</Button> */}
+					{/* <Button variant="outline" size="sm">
 						<Code className="mr-2 h-4 w-4" /> Lean4
-					</Button>
+					</Button> */}
 				</div>
 			</div>
 
 			<Card className="p-4 bg-muted/50">
-				<h3 className="font-medium text-sm mb-2">Original Problem</h3>
+				<h3 className="font-medium text-sm mb-2">原始问题</h3>
 				<p>{solution.originalText}</p>
 			</Card>
-
+			{/* 
 			<Card className="p-4 bg-primary/5 border-primary/20">
 				<h3 className="font-medium text-sm mb-2">Formalized Statement</h3>
 				<code className="text-sm font-mono">{solution.formalizedText}</code>
-			</Card>
+			</Card> */}
 
 			<Tabs defaultValue="steps" value={currentTab} onValueChange={setCurrentTab}>
-				<TabsList className="grid grid-cols-2 w-[400px] mb-4">
+				{/* <TabsList className="grid grid-cols-1 w-[400px] mb-4">
 					<TabsTrigger value="steps">Step-by-Step Solution</TabsTrigger>
 					<TabsTrigger value="tree">Proof Tree</TabsTrigger>
-				</TabsList>
+				</TabsList> */}
 
 				<TabsContent value="steps">
 					<div ref={stepsRef} className="space-y-3">
-						{solution.steps.map((step) => (
+						{/* {solution.steps.map((step) => (
 							<motion.div key={step.id} className="step-item p-4 bg-card border rounded-lg opacity-0">
 								<div className="flex">
 									<span className="font-mono text-primary font-medium mr-3">{step.id}.</span>
 									<div>{step.content}</div>
 								</div>
 							</motion.div>
-						))}
+						))} */}
+						<motion.div className="step-item p-4 bg-card border rounded-lg opacity-0">
+							<div className="flex">
+								<div>
+									{/* <MathContent content={solution.steps as string} /> */}
+									<MathMarkdown content={solution.steps as string} />
+								</div>
+							</div>
+						</motion.div>
 					</div>
 				</TabsContent>
 
-				<TabsContent value="tree">
+				{/* <TabsContent value="tree">
 					<Card className="p-6 h-[400px] relative flex items-center justify-center">
 						<ProofTree proofTree={solution.proofTree} />
 					</Card>
-				</TabsContent>
+				</TabsContent> */}
 			</Tabs>
 		</motion.div>
 	);
