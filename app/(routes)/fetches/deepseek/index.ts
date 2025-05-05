@@ -71,7 +71,7 @@ export const solveMathProblem = async (mathContent: string) => {
 		console.error(`error`, error);
 		return {
 			status: false,
-			msg: `Error in deepseek omni`,
+			msg: `Error in deepseek`,
 		};
 	}
 

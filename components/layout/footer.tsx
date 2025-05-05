@@ -13,7 +13,11 @@ export function Footer() {
 						</div>
 						<p className="text-sm text-muted-foreground">Analyze and solve mathematical problems with advanced AI technology</p>
 						<div className="flex space-x-4">
-							<Link href="https://github.com/loo-y/mathproofs" className="text-muted-foreground hover:text-foreground transition-colors">
+							<Link
+								href="https://github.com/loo-y/mathproofs"
+								target="_blank"
+								className="text-muted-foreground hover:text-foreground transition-colors"
+							>
 								<Github className="h-5 w-5" />
 								<span className="sr-only">GitHub</span>
 							</Link>

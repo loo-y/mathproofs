@@ -78,7 +78,9 @@ export function SolutionDisplay({ solution, onReset }: SolutionDisplayProps) {
 
 			<Card className="p-4 bg-muted/50">
 				<h3 className="font-medium text-sm mb-2">原始问题</h3>
-				<p>{solution.originalText}</p>
+				<div>
+					<MathContent content={solution.originalText || ''} />
+				</div>
 			</Card>
 			{/* 
 			<Card className="p-4 bg-primary/5 border-primary/20">

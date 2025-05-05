@@ -155,11 +155,11 @@ const getProofs = async ({ imageFile, stateChangeCallback }: IGetProofs) => {
 		})) || '';
 
 	stateChangeCallback('analyzing');
-	stateChangeCallback('converting');
 	const mathContentResult = await fetchImageRecognize({
 		imageBase64: imageBase64,
 		fileType: imageFile.type,
 	});
+	stateChangeCallback('converting');
 	stateChangeCallback('proving');
 	const solutionSteps = await fetchGetProofs({
 		mathContent: mathContentResult?.content || '',
