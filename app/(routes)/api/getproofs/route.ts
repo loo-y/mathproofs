@@ -7,8 +7,17 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-	const { token } = await request.json();
-	const res = NextResponse.json({ token });
-	res.cookies.set('token', token, { path: '/' });
-	return res;
+	const body = await request.json();
+	const { image, imageType } = body || {};
+
+	const result = await recognizeImage(image);
+	console.log(`result`, result);
+	return NextResponse.json(
+		{
+			content: result || '',
+		},
+		{
+			status: 200,
+		},
+	);
 }
